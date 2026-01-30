@@ -1,0 +1,43 @@
+project:
+  output_dir: output
+  log_every: 1000
+  checkpoint_path: output/checkpoint.json
+
+data:
+  base_dir: data
+  timeframes: [M5]
+  file_pattern: "{timeframe}.csv"
+  time_column: time
+
+backtest:
+  initial_equity: 1000000
+  risk_per_trade: 0.01
+  pip_size: 0.01
+  spread_pips: 0.2
+  fee_per_trade: 0.0
+  max_dd_pct_stop: 40.0
+  early_stop:
+    enabled: true
+    min_trades: 30
+    max_consecutive_losses: 10
+
+strategy:
+  bit_count: 29
+  constraints:
+    enforce_entry_exclusive: true
+    enforce_time_filter: true
+    enforce_management_minimum: true
+    enforce_sl_exclusive: true
+    enforce_tp_rules: true
+
+explore:
+  mode: explore
+  start_id: 0
+  end_id: null
+  chunk_size: 10000
+  workers: 0
+  summary_rotation: 1000
+
+export_trades:
+  enabled: false
+  strategy_ids: []
